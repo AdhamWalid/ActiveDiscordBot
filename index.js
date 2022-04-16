@@ -6,7 +6,6 @@ const client = new Discord.Client({intents : 32767 , ws: { properties:
   { $browser: "Discord iOS" }
   } }) 
   const moment = require('moment')
-  const Levels = require("discord-xp");
   const { Player, QueryType, QueueRepeatMode } = require("discord-player");
 const InvitesTracker = require('@androz2091/discord-invites-tracker');
 const tracker = InvitesTracker.init(client, {
@@ -16,7 +15,6 @@ const tracker = InvitesTracker.init(client, {
 });
   const discordTranscripts = require('discord-html-transcripts');
 require('dotenv').config()
-Levels.setURL(`${`mongodb+srv://Velvet:cZQk4SVbG9utLM5h@cluster0.vx3jf.mongodb.net/dev-center?retryWrites=true&w=majority`}`)
 
 const sourcebin = require('sourcebin');
 const DiscordModal = require('discord-modal')
@@ -1169,18 +1167,6 @@ message.delete()
 	}
 });
 
-
-client.on("messageCreate", async (message) => {
-  if (!message.guild) return;
-  if (message.author.bot) return;
-  
-  const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
-  const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomAmountOfXp);
-  if (hasLeveledUp) {
-    const user = await Levels.fetch(message.author.id, message.guild.id);
-    message.channel.send({ content: `${message.author}, Congrats!! You have leveled up to **#${user.level}**. :tada:` });
-  }
-});
 
 
         client.on('messageCreate' , async (message) => {
