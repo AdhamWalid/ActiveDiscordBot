@@ -2,7 +2,6 @@ require("events").EventEmitter.defaultMaxListeners = 200;
 const {MessageActionRow} = require("discord.js"); 
 const Discord = require('discord.js')
 require('discord-reply');
-const canvacord = require("canvacord");
 const client = new Discord.Client({intents : 32767 , ws: { properties: 
   { $browser: "Discord iOS" }
   } }) 
@@ -39,7 +38,6 @@ app.get('/' , (req,res) => {
 
 
  app.listen(3000)
-const Canvas = require('canvas')
 // app.listen(3000)
 
 client.on("ready", async () => {
@@ -259,47 +257,8 @@ const commands = [{
             }
       ]
   
-  },{
-    name : "points",
-    description : "Shows Your Current Points",  
-    options : [{
-      name : "user",
-      description : "user",
-      type : 6,
-      required : false
-      }]
-  },{
-    name : "manage-points",
-    description: "gives a certain user points",
-    options : [{
-        name : "user",
-        description : "specify the user",
-        type : 6,
-        required : true
-        },{
-            name : "action",
-            description : "Give or remove?",
-            type : 3,
-            choices: [
-                {
-                    "name": "add",
-                    "value": "give"
-                },
-                {
-                    "name": "remove",
-                    "value": "remove"
-                }
-            ],
-            required : true
-            },{
-              name : "amount",
-              description : "The Amout to be Given/Removed from the user",
-              type : 10,
-              required : true
-              }
-        ]
-    },
-    {
+  }
+  ,  {
       name : "role",
       description : "Adds a role to a user",
       options : [{
@@ -703,9 +662,9 @@ client.on(`interactionCreate`,(interaction)=>{
      let f = client.channels.cache.get('955412875168587796');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&955869604041875546> New Code!' , embeds : [embed]})
-    let points = await db.get(`user_${interaction.user.id}.points`)
-    if(points === null) points = 0;
-    await db.add(`user_${interaction.user.id}.projects` , 1)  }
+ 
+  }
+
  })
 
       
@@ -750,9 +709,7 @@ client.on(`interactionCreate`,(interaction)=>{
      let f = client.channels.cache.get('957257305244696687');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&957266074733252672> New Code!' , embeds : [embed]})
-    let points = await db.get(`user_${interaction.user.id}.points`)
-    if(points === null) points = 0;
-    await db.add(`user_${interaction.user.id}.projects` , 1)  }
+   }
  })
 
  client.on(`interactionCreate`,(interaction)=>{
@@ -795,9 +752,7 @@ client.on(`interactionCreate`,(interaction)=>{
      let f = client.channels.cache.get('957269606374998066');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&957269676184989736> New Code!' , embeds : [embed]})
-    let points = await db.get(`user_${interaction.user.id}.points`)
-    if(points === null) points = 0;
-    await db.add(`user_${interaction.user.id}.projects` , 1)  }
+   }
  })
 
 
@@ -844,9 +799,7 @@ client.on(`interactionCreate`,(interaction)=>{
      let f = client.channels.cache.get('955883898120835132');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&956151759993192458> New Code!' , embeds : [embed]})
-    let points = await db.get(`user_${interaction.user.id}.points`)
-    if(points === null) points = 0;
-    await db.add(`user_${interaction.user.id}.projects` , 1)  }
+   }
  })
 
 
@@ -945,9 +898,7 @@ client.on(`interactionCreate`,(interaction)=>{
      let f = client.channels.cache.get('955882165692923964');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&955869691941912686> New Code!' , embeds : [embed]})
-    let points = await db.get(`user_${interaction.user.id}.points`)
-    if(points === null) points = 0;
-    await db.add(`user_${interaction.user.id}.projects` , 1)  }
+   }
  })
 
 
@@ -1067,9 +1018,7 @@ client.on(`interactionCreate`,(interaction)=>{
      let f = client.channels.cache.get('955882228297134140');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&955869717946585138> New Code!' , embeds : [embed]})
-    let points = await db.get(`user_${interaction.user.id}.points`)
-    if(points === null) points = 0;
-    await db.add(`user_${interaction.user.id}.projects` , 1)  }
+   }
  })
 
 
@@ -1221,32 +1170,6 @@ message.delete()
 });
 
 
-client.on('guildMemberAdd' , async (member) => {
-  let background = await Canvas.loadImage('https://media.discordapp.net/attachments/958033245302292491/958087765793325056/b4ce22dd423f7b4c.png?width=1440&height=536')
-  let avatar = await Canvas.loadImage(member.user.displayAvatarURL({ dynamic: true, format: "png", size: 1024 }));
-  let username = member.user.username.length > 13 ? member.user.username.substring(0, 12) + "..." : member.user.username;
-  var channel = client.channels.cache.get('926107305982959636');
-  var canvas = await Canvas.createCanvas(400, 148.8) 
-  var ctx = await canvas.getContext('2d');
-  ctx.drawImage(background, 0, 0, 400, 148.8);
-  ctx.font = "22px Arial";
-  ctx.fillStyle = "#fff";
-  ctx.textAlign = "left";
-  ctx.fillText(username, 280, 90);  
-  ctx.beginPath();
-  ctx.arc(199.4, 74.4, 74.4, 0, Math.PI * 2, true);
-  ctx.closePath();
-  ctx.clip();
-  ctx.drawImage(avatar, 125, 0, 148.8, 148.8)
-
-  /*****************************************************/
-  let message = `**<a:emoji_27:926374948308672533> ${member} , Welcome to ${member.guild.name}.\n<a:emoji_27:926374948308672533> Member Number ${member.guild.memberCount.toLocaleString()}**   `
-  channel.send({ content : message,files:[canvas.toBuffer()]});
-  let meme = client.channels.cache.get('964115035414724648');
-  meme.setName(`MemberCount ${channel.guild.memberCount.toLocaleString()}`)
-}) ; 
-
-
 client.on("messageCreate", async (message) => {
   if (!message.guild) return;
   if (message.author.bot) return;
@@ -1260,170 +1183,6 @@ client.on("messageCreate", async (message) => {
 });
 
 
-client.on('messageCreate', async (message) => {
-if (message.content=== 'd!points'){
-
-  const target = message.mentions.users.first() || message.author; // Grab the target.
-
-  const user = await Levels.fetch(target.id, message.guild.id, true); // Selects the target from the database.
-  
-  const rank = new canvacord.Rank() // Build the Rank Card
-      .setAvatar(target.displayAvatarURL({format: 'png', size: 512}))
-      .setCurrentXP(user.xp) // Current User Xp
-      .setRequiredXP(Levels.xpFor(user.level + 1)) // We calculate the required Xp for the next level
-      .setRank(user.position) // Position of the user on the leaderboard
-      .setLevel(user.level) // Current Level of the user
-      .setProgressBar("#FFFFFF")
-      .setUsername(target.username)
-      .setDiscriminator(target.discriminator);
-
-  rank.build()
-      .then(data => {
-      const attachment = new Discord.MessageAttachment(data, "RankCard.png");
-      message.channel.send({files : [attachment]});
-  });
-
-}
-  })
-
-  client.on('messageCreate', async (message) => {
-    if (message.content=== prefix + 'top'){
-      const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10); // We grab top 10 users with most xp in the current server.
-
-      if (rawLeaderboard.length < 1) return reply("Nobody's in leaderboard yet.");
-      
-      const leaderboard = await Levels.computeLeaderboard(client, rawLeaderboard, true); // We process the leaderboard.
-      
-      const lb = leaderboard.map(e => `\`#${e.position}.\` ${e.username} - Level: **${e.level}** - XP: ${e.xp.toLocaleString()}`); // We map the outputs.
-      
-      message.channel.send(`**Leaderboard**:\n\n${lb.join("\n\n")}`);
-    
-      ;}
-      })
-    
-
-
-client.on('interactionCreate' , async (interaction) => {
-  if (interaction.isCommand()){
-    if (interaction.commandName === 'points'){
-      if (interaction.user.bot) return;
-        await interaction.deferReply()
-
-        let user = interaction.options.getUser('user')
-        if (!user){
-          user = interaction.user;
-        }
-        
-        let points = await db.get(`user_${user.id}.points`)
-        if(points === null) points = 0;
-        console.log(points)
-        // let embed = new Discord.MessageEmbed()
-        // .setColor('BLURPLE')
-        // .setAuthor({name : `${user.username}`, iconURL: user.avatarURL({dynamic:true})})
-          
-        // .setThumbnail(interaction.guild.iconURL({dynamic:true}))
-        // .addField(`User Points` ,`${points}`, true)
-        // .setFooter({text  :client.user.username , iconURL : interaction.guild.iconURL({dynamic:true})})
-
-
-      const rank = new canvacord.Rank()
-    .setAvatar(user.displayAvatarURL({ dynamic: false, format: 'png' }))
-    .setCurrentXP(points)
-    .setRequiredXP(1000)
-    .setStatus("dnd")
-    .setProgressBar("#FFFFFF", "COLOR")
-    .setUsername(user.username)
-    .setDiscriminator(user.discriminator);
-      rank.build()
-    .then(data => {
-        const attachment = new Discord.MessageAttachment(data, "rank.png");
-        interaction.editReply({files: [attachment]})
-    });
-      
-    }
-  }
-})
-
-
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
-  if(interaction.commandName == "manage-points"){
-     
-    const user = interaction.options.getUser('user');
-    const integer = interaction.options.getNumber('amount');
-    const choice = interaction.options.getString('action')
-     
-    if (await db.get(`user_${user.id}.points`) === null){
-     await db.set(`user_${user.id}.points` , 0)
-    }
-     
-    if (!interaction.member.roles.cache.has("926107281395945473")) return interaction.reply("Not a Creator.");
-
-
-    if (choice === "give"){
-      await db.add(`user_${user.id}.points` , integer)
-      interaction.reply({content : `**${interaction.user.username} added ${integer} Points to ${user.username}**`})
-    }else  if (choice === "remove"){
-      await db.subtract(`user_${user.id}.points` , integer)
-      interaction.reply({content : `**${interaction.user.username} removed ${integer} Points to ${user.username}**`})
-    }else{
-      interaction.reply({content : `Something Wrong Happened ..`})
-        }
-      }});
-
-
-      client.on('messageCreate' , async (message) => {
-        if (message.content.startsWith('d!' + 'short')){
-          const code = message.content.split(" ").slice(1).join(" ");
-
-          const bin = await sourcebin.create(
-            [
-                {
-                    content: code,
-                    language:"js",
-                },
-            ],
-            {
-                title: `Command Created By Developer-Center`,
-                description: 'Coded By discord.gg/dev-center',
-            },
-        );
-        message.channel.send({content : `${message.author}\n${bin.url}`})
-        }
-      })
-
-
-
-    //   client.on('messageCreate', async (message) => {
-    //     if(message.content === ('d!' + 'top')) {
-        
-    //       const array =(await  db.all()).filter(i => i.ID.startsWith(`user_`)).sort((a, b) => b.data.points - a.data.points); // sorted balances
-    //       let content = "";
-    //       // create the leaderboard message
-    //       let current = await db.get(`user_${message.author.id}`)
-    //       for (let i = 0; i < 10; i++) {
-    //           let user = client.users.cache.get(array[i].ID.split('_')[1]);
-    //           console.log(user) // get the user name from id
-    //           if (user.bot){
-    //             await db.delete(`user_${user.id}`)
-    //           }
-    //           content += `\`#${i + 1}\` ${user} - ${array[i].data.points}\n` // add the user's position and their name and balance
-    // }
-
-    //           let i = 1;
-    //           let embed1 = new Discord.MessageEmbed()
-    //           .setAuthor({name : `Points LeaderBoard` , iconURL : message.guild.iconURL({dynamic : true})})
-    //           .setThumbnail(message.guild.iconURL({dynamics : true}))
-    //           .setDescription(content)
-    //           .setColor('BLURPLE')
-    //           .addField(`> ${message.author.username} Stats` , `Points : **${current.points}**`)
-    //           .setImage("https://is.gd/eDKiyC")
-    //           message.reply({ embeds: [embed1]});
-           
-        
-    //     }
-    //     });
-        
         client.on('messageCreate' , async (message) => {
           if (message.content === prefix + 'send-panel'){
             if (!message.member.roles.cache.has("926107281395945473")) return message.reply("INVALID PERMISSION.");
