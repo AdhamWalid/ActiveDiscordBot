@@ -16,14 +16,14 @@ const tracker = InvitesTracker.init(client, {
 });
   const discordTranscripts = require('discord-html-transcripts');
 require('dotenv').config()
-Levels.setURL(`${process.env.database}`)
+Levels.setURL(`${`mongodb+srv://Velvet:cZQk4SVbG9utLM5h@cluster0.vx3jf.mongodb.net/dev-center?retryWrites=true&w=majority`}`)
 
 const sourcebin = require('sourcebin');
 const DiscordModal = require('discord-modal')
 DiscordModal(client)
 const prefix = "d!";
 const {Database}  = require("quickmongo");
-const db = new Database(process.env.database);
+const db = new Database(`mongodb+srv://Velvet:cZQk4SVbG9utLM5h@cluster0.vx3jf.mongodb.net/dev-center?retryWrites=true&w=majority`);
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { MessageButton } = require("discord.js");
@@ -355,7 +355,7 @@ const commands = [{
 }]
 
 
-const rest = new REST({ version: '9' }).setToken(process.env.token);
+const rest = new REST({ version: '9' }).setToken(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
 
 (async () => {
 	try {
@@ -1539,4 +1539,4 @@ message.channel.awaitMessages({filter2, max: 1, time: 5000, errors: ['time'] }).
 
 
 
-client.login(process.env.token);
+client.login(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
