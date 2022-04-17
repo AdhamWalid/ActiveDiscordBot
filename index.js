@@ -44,7 +44,7 @@ client.on("ready", async () => {
 
 
 
-    client.user.setActivity(`Ramadan Kareem`, {
+    client.user.setActivity(`Developers Center`, {
         type: "WATCHING",
       })
       
