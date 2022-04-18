@@ -1368,8 +1368,13 @@ tracker.on('guildMemberAdd', (member, type, invite) => {
       <a:emLoading:959449435199397908> | Name ${member} 
       <a:emLoading:959449435199397908> | User Position ${member.guild.memberCount.toLocaleString()}
       <a:emLoading:959449435199397908> | Invited By ${invite.inviter.username}`);
-      console.log(invite)
-  }
+      if (db.get(`user_${invite.inviter.id}.invites`) === null){
+        db.set(`user_${invite.inviter.id}`, {
+          invites : 0
+        })
+      }
+
+      db.add(`user_${invite.inviter.id}.invites`, 1)   }
 
   else if(type === 'vanity'){
       welcomeChannel.send(`<a:Future97:959449440647806986> | Welcome To Developers Center 🌙
