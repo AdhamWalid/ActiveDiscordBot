@@ -1368,6 +1368,7 @@ tracker.on('guildMemberAdd', (member, type, invite) => {
       <a:emLoading:959449435199397908> | Name ${member} 
       <a:emLoading:959449435199397908> | User Position ${member.guild.memberCount.toLocaleString()}
       <a:emLoading:959449435199397908> | Invited By ${invite.inviter.username}`);
+      console.log(invite)
   }
 
   else if(type === 'vanity'){
