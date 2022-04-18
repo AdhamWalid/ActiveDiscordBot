@@ -547,7 +547,7 @@ client.on('interactionCreate', async interaction => {
           client.on('messageCreate' , async (message) => {
             if (message.channel.id ==="955419242029797466"){
 
-            message.react("959449440647806986")
+            message.react("926389413733355560")
             message.react('926374420354859038')
           }
           })
