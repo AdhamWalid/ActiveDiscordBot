@@ -1359,6 +1359,7 @@ message.delete()
         }
       })
   
+      
 tracker.on('guildMemberAdd', (member, type, invite) => {
 
   const welcomeChannel = member.guild.channels.cache.find((ch) => ch.id === '926117342092607589');
