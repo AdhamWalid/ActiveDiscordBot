@@ -416,7 +416,7 @@ client.on('interactionCreate', async interaction => {
       var result = args;
       let noResultArg = new Discord.MessageEmbed()
       .setColor("#e31212")
-      .setDescriptionescription("ERROR: No valid eval args were provided")
+      .setDescription("ERROR: No valid eval args were provided")
       if (!result) return interaction.reply({editReply : [noResultArg] , ephemeral : true })
       let evaled = await eval(result);
       console.log((result));
@@ -436,7 +436,7 @@ client.on('interactionCreate', async interaction => {
       .setTitle("An error has occured")
       .addField(`Input:\n`, '```js\n' + `${result}` + '```', false)
       .addField(`Output:\n`, '```js\n' + `${error.message}` + '```', true)
-      //.setDescriptionescription(`Output:\n\`\`\`${err}\`\`\``)
+      //.setDescription(`Output:\n\`\`\`${err}\`\`\``)
       return interaction.reply({embeds : [resultError] , ephemeral : true})
     }
 
@@ -964,7 +964,7 @@ process.on("unhandledRejection", error => console.error("Promise rejection:", er
 //     let embed = new Discord.MessageEmbed()
 //     .setAuthor({name : client.user.username , iconURL : client.user.avatarURL({dynamic:true})})
 //     .setThumbnail(client.user.avatarURL({dynamic:true}))
-//     .setDescriptionescription(`I've Left ${guild.name}!`)
+//     .setDescription(`I've Left ${guild.name}!`)
 //     .setColor('BLURPLE')
 //     .addField(`Reason` , `Users Under than 25 members` , true)
 //     .setFooter({text : "This System is Temporarly", iconURL : client.user.avatarURL({dynamic:true})})
@@ -1145,7 +1145,7 @@ client.on('guildMemberBoost', (member) => {
 
         let embed = new Discord.MessageEmbed()
         .setAuthor({name : `${member.user.username} Just Boosted the Server` , iconURL : member.guild.iconURL({dynamic:true})})
-        .setDescriptionescription(`**<a:emoji_50:926374484204736553> Thanks For Boosting \n<:velvetpremuim:957999308072960000>  I've Gave You Your <@&926542927763759144> Role**`)
+        .setDescription(`**<a:emoji_50:926374484204736553> Thanks For Boosting \n<:velvetpremuim:957999308072960000>  I've Gave You Your <@&926542927763759144> Role**`)
   .setColor('BLURPLE')
   channel.send({content : `${member} ~`,embeds : [embed]})
 });
@@ -1176,7 +1176,7 @@ message.delete()
             let embed = new Discord.MessageEmbed()
             .setAuthor({name : "Developers Center" , iconURL : message.guild.iconURL({dynamics : true})})
             .setColor("BLURPLE")
-            .setDescriptionescription("**Open a Ticket by Clicking the Button**")
+            .setDescription("**Open a Ticket by Clicking the Button**")
             .setThumbnail(message.guild.iconURL({dynamics : true}))
             .setFooter("Please don't open a ticket for no reason.")
             
@@ -1224,7 +1224,7 @@ message.delete()
               newChannel.setTopic(interaction.user.id)
               let embed = new Discord.MessageEmbed()
               .setAuthor(`Developers Center`)
-              .setDescriptionescription("Please wait for the support team.")
+              .setDescription("Please wait for the support team.")
               .addField(`Ticket Author` , `${interaction.user.tag}`, true)
               .addField(`Date` , `<t:${Date.now().toString().slice(0 , 10)}:R>` , true )
               .setColor("BLURPLE")
@@ -1408,7 +1408,7 @@ client.on('interactionCreate' , async (interaction) => {
         .setColor(`#2f3136`)
         .setTitle(body.name)
         .setURL(`https://www.npmjs.com/package/${body.name}`)
-        .setDescriptionescription(body.description || 'No description.')
+        .setDescription(body.description || 'No description.')
         .addField('❯ Version', body['dist-tags'].latest, true)
         .addField('❯ License', body.license || 'None', true)
         .addField('❯ Keywords', `${body.keywords}` || 'None', true)
