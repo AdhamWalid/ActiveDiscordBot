@@ -1394,7 +1394,7 @@ tracker.on('guildMemberAdd', (member, type, invite) => {
 
 });
 
-
+//
 const fetch = require('node-fetch')
 client.on('interactionCreate' , async (interaction) => {
   if (interaction.isCommand()){
