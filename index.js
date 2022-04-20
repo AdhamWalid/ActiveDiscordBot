@@ -6,6 +6,8 @@ const client = new Discord.Client({intents : 32767 , ws: { properties:
   { $browser: "Discord iOS" }
   } }) 
   const moment = require('moment')
+  const cd = require("countdown")
+
   const { Player, QueryType, QueueRepeatMode } = require("discord-player");
 const InvitesTracker = require('@androz2091/discord-invites-tracker');
 const tracker = InvitesTracker.init(client, {
@@ -51,8 +53,19 @@ client.on("ready", async () => {
       client.user.setPresence({
         status: "idle",
       })
+      setInterval(async function () {
+        client.channels.cache.get("966476828543942666").messages.fetch("966479634126499842").then(msg => {
+          var time = cd(new Date().getTime(), new Date("MAY 3, 2022 00:00:00").getTime());
+          var embed = new Discord.MessageEmbed()
+          .setAuthor({name : `Eid Al Fatr`})
+          .setDescription('Message gets edited in 5s')
+          .addField(`<a:Sparkles:959456166243618826> Time Left . . .` , `**${time}**` , true)
+          .setColor("BLURPLE")
+          .setImage('https://cdn.discordapp.com/attachments/966025558762860646/966415429742522408/0..jpg')
+             msg.edit({embeds : [embed]})
+        })
 
-
+      },5000);
 
 console.log(`Logged in as ${client.user.tag}`)
 //   if (!client.application?.owner) await client.application?.fetch();
