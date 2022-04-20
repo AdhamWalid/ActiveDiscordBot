@@ -1242,7 +1242,7 @@ message.delete()
                   .setCustomId("owners_btn"),
                   );
 
-              newChannel.send({content : '<@&959579466781311016> ~',embeds : [embed] ,  components : [row]})
+              newChannel.send({content : `${interaction.user} <@&959579466781311016>`,embeds : [embed] ,  components : [row]})
 
 
 
