@@ -670,6 +670,7 @@ client.on(`interactionCreate`,(interaction)=>{
     .addField('Developer', `${interaction.user}` , true) 
     .setThumbnail(interaction.guild.iconURL({dynamics:true}))
     console.log(interaction.fields[1].value)
+    
      let f = client.channels.cache.get('955412875168587796');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&955869604041875546> New Code!' , embeds : [embed]})
