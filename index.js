@@ -664,12 +664,12 @@ client.on(`interactionCreate`,(interaction)=>{
     let embed = new Discord.MessageEmbed()
     .setColor('GREEN')
     .setAuthor({name : 'Code Submittion'})
-    .addField('Code Name', `${interaction.fields[0].value}`)
-    .setDescription('Code', '\`\`\`js\n' + interaction.fields[1].value + '\n\`\`\`')
+    .addField('Code Name', `${interaction.fields[0].value}` , true)
+    .setDescription('Code\n\`\`\`js\n ' + interaction.fields[1].value+ '  + \'\n\`\`\`')
     .addField('Version', '\`\`\`js\n' + interaction.fields[2].value + '\n\`\`\`')
-
-    .addField('Copyrights', `${interaction.user}`) 
+    .addField('Developer', `${interaction.user}` , true) 
     .setThumbnail(interaction.guild.iconURL({dynamics:true}))
+    console.log(interaction.fields[1].value)
      let f = client.channels.cache.get('955412875168587796');
     await interaction.editReply({content : `Posted in ${f}`})
     f.send({content  : '<@&955869604041875546> New Code!' , embeds : [embed]})
