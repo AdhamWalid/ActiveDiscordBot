@@ -697,7 +697,7 @@ client.on(`interactionCreate`,(interaction)=>{
     .setColor('GREEN')
     .setAuthor({name : 'Code Submittion'})
     .addField('Code Name', `${interaction.fields[0].value}` , true)
-    .setDescription('Code\n\`\`\`js\n ' + interaction.fields[1].value+ '  + \'\n\`\`\`')
+    .setDescription('Code\n\`\`\`js\n ' + interaction.fields[1].value+ '\'\n\`\`\`')
     .addField('Version', '\`\`\`js\n' + interaction.fields[2].value + '\n\`\`\`')
     .addField('Developer', `${interaction.user}` , true) 
     .setThumbnail(interaction.guild.iconURL({dynamics:true}))
@@ -1605,5 +1605,79 @@ client.on('interactionCreate' , async (interaction) => {
     }
   }
 })
+
+      client.on('messageCreate' , async (message) => {
+        if (message.content === prefix + 'apply-panel'){
+          if (message.author.id === '602758334520623125'){
+            let row = new Discord.MessageActionRow()
+            .addComponents(new Discord.MessageButton()
+            .setLabel('Coders')
+            .setStyle('PRIMARY')
+            .setCustomId('coders_btn'),
+            new Discord.MessageButton()
+            .setLabel('Support')
+            .setStyle('SECONDARY')
+            .setCustomId('support_btn'),
+            new Discord.MessageButton()
+            .setLabel('Add Bot')
+            .setStyle('DANGER')
+            .setCustomId('bot_btn')
+            )
+
+          
+            message.channel.send({content : "<:8912blurplehypsquadevent:962687313119416370> ** Developers Center #Apply_Panel\n\n<a:vera:926375977477615617> | Press the \"Blue\" Button to Apply for the <@&959579466781311016> Team\n<a:vera:926375977477615617> | Press the \"Grey\" Button to Apply for the <@&959578322650689606> Team\n<a:vera:926375977477615617> | Press the \"Red\" Button to Add your bot to the server\n**" , components : [row]})
+          }else return;
+        }
+      })
+
+
+
+      client.on('interactionCreate' , async (interaction) => {
+        if (interaction.isButton()){
+          if (interaction.customId === 'coders_btn'){
+            const textinput = new DiscordModal.TextInput()
+            .setCustomId("coders_role_apply")
+            .setTitle("Coders Role Apply")
+            .addComponents(
+              new DiscordModal.TextInputField()
+              .setLabel("Name")
+              .setStyle("short")
+              .setCustomId("username")
+              .setRequired(true),//Its default value is false,
+              new DiscordModal.TextInputField()
+              .setLabel("Age")
+              .setStyle("short")
+              .setCustomId("age"),
+              new DiscordModal.TextInputField()
+              .setLabel("Languages")
+              .setStyle("short")
+              .setCustomId("lang"),
+              new DiscordModal.TextInputField()
+              .setLabel("Country")
+              .setStyle("short")
+              .setCustomId("country")
+              )
+              client.TextInputs.open(interaction, textinput) 
+          }
+        }
+      })
+
+
+      client.on("interactionTextInput",async(interaction)=>{
+        if(interaction.customId == 'coders_role_apply'){
+          await interaction.deferReply()
+          let embed = new Discord.MessageEmbed()
+          .setColor('BLURPLE')
+          .setAuthor('New Application')
+          .addField('Name', '\`\`\`' + interaction.fields[0].value + '\`\`\`' , true)
+          .addField('Age', '\`\`\`' + interaction.fields[1].value + '\`\`\`' , true)
+          .addField('Language', '\`\`\`' + interaction.fields[2].value+ '\`\`\`' , true) 
+          .addField('Country', '\`\`\`' + interaction.fields[3].value + '\`\`\`' , true)
+          .addField('User', `${interaction.user}` , true)
+
+          await client.channels.cache.get('956161285580546048').send({embeds  : [embed]})
+           await interaction.reply({content : 'Thanks for applying , please wait for the respond.' , ephemeral : true})
+        }
+       })
 
 client.login(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
