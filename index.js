@@ -363,7 +363,39 @@ const commands = [{
     type : "3",
     required : true
     }]
-}]
+},{
+  name : "addbot",
+  description: "Add's your bot to the server",
+  options : [{
+      name : "botid",
+      description : "Your BotID",
+      type : 3,
+      required : true
+      },{
+          name : "verfied",
+          description : "is your bot vefied?",
+          type : 3,
+          choices: [
+              {
+                  "name": "yes",
+                  "value": "yes"
+              },
+              {
+                  "name": "no",
+                  "value": "no"
+              }
+              
+          ],
+          required : true
+          },{
+            name : "support-server",
+            description : "Support Server Link",
+            type : 3,
+            required : true
+            }
+      ]
+  
+  }]
 
 
 const rest = new REST({ version: '9' }).setToken(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
@@ -1213,11 +1245,10 @@ message.delete()
           if (interaction.isButton()){
             if (interaction.customId === 'ticket_btn'){
              let value = await db.get(`tickets_${interaction.user.id}`)
-              if (value === true){
-                interaction.reply({content : "You Already Have a Ticket Opened!" , ephemeral :true})
-              }else{
+              if (value === true) return interaction.reply({content : "You Already Have a Ticket Opened!" , ephemeral :true});
+              
                 db.set(`tickets_${interaction.user.id}` , true)
-              }
+              
               interaction.guild.channels.create(`${interaction.user.username}`, { //Create a channel
                 type: 'text', //Make sure the channel is a text channel
                 parent : '958780751371972621',
@@ -1343,6 +1374,8 @@ message.delete()
             }}
           }
         })
+
+
 
 
       client.on('interactionCreate' , async (interaction) => {
@@ -1545,5 +1578,31 @@ message.channel.awaitMessages({filter2, max: 1, time: 5000, errors: ['time'] }).
 
 
 
+client.on('interactionCreate' , async (interaction) => {
+  if (interaction.isCommand()){
+    if (interaction.commandName === 'addbot'){
+      let botid = interaction.options.getString('botid')
+      let verfied = interaction.options.getString('verfied')
+      let support = interaction.options.getString('support-server')
+      console.log(`${botid} ${verfied} ${support}`)
+
+      let bot = await client.users.fetch(botid)
+      console.table(bot)
+      if (bot.bot === false) interaction.reply('That\'s a User not a bot!')
+      let channel = client.channels.cache.get('967592185295958106');
+      let embed = new Discord.MessageEmbed()
+      .setAuthor({name:`New Bot Admission`})
+      .addField(`Bot Name` , `${bot.username}` , true)
+      .addField(`Bot ID` , `${bot.id}` , true)
+      .addField(`Bot Verfication` , `${verfied}` , true)
+      .addField(`Support Server` , `${support}` )
+      .addField(`Applier` , `${interaction.user}` ,)
+      channel.send({embeds : [embed]})
+
+      interaction.reply(':tada: Bot Submitted! Please Transfer the Fees')
+
+    }
+  }
+})
 
 client.login(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
