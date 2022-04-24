@@ -697,7 +697,7 @@ client.on(`interactionCreate`,(interaction)=>{
     .setColor('GREEN')
     .setAuthor({name : 'Code Submittion'})
     .addField('Code Name', `${interaction.fields[0].value}` , true)
-    .setDescription('Code\n\`\`\`js\n ' + interaction.fields[1].value+ '\'\n\`\`\`')
+    .setDescription('Code\n```js\n ${interaction.fields[1].value} \n\`\`\`')
     .addField('Version', '\`\`\`js\n' + interaction.fields[2].value + '\n\`\`\`')
     .addField('Developer', `${interaction.user}` , true) 
     .setThumbnail(interaction.guild.iconURL({dynamics:true}))
