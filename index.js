@@ -1588,7 +1588,7 @@ client.on('interactionCreate' , async (interaction) => {
 
       let bot = await client.users.fetch(botid)
       console.table(bot)
-      if (bot.bot === false) interaction.reply('That\'s a User not a bot!')
+      if (bot.bot === false) return interaction.reply('That\'s a User not a bot!')
       let channel = client.channels.cache.get('967592185295958106');
       let embed = new Discord.MessageEmbed()
       .setAuthor({name:`New Bot Admission`})
@@ -1596,6 +1596,7 @@ client.on('interactionCreate' , async (interaction) => {
       .addField(`Bot ID` , `${bot.id}` , true)
       .addField(`Bot Verfication` , `${verfied}` , true)
       .addField(`Support Server` , `${support}` )
+      .setColor('BLURPLE')
       .addField(`Applier` , `${interaction.user}` ,)
       channel.send({embeds : [embed]})
 
