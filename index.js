@@ -37,11 +37,12 @@ app.get('/' , (req,res) => {
 
 
 
+
+
  app.listen(3000)
 // app.listen(3000)
 
 client.on("ready", async () => {
-  await db.connect(); 
   console.table(await db.all())
 
 
@@ -606,7 +607,7 @@ client.on('interactionCreate', async interaction => {
             .setColor("BLURPLE")
             .addField("<:emoji_83:926389412093366322> Suggestion" , `${message.content}`)
             .addField("🕰️ Time" , `<t:${Date.now().toString().slice(0 , 10)}:R>` , true)
-            .addField("User" , `\`${message.author.id}\`` , true)
+            .addField("User" , `(${message.author})` , true)
             .setThumbnail(message.author.avatarURL({dynamics  : true}))
             message.delete()
             message.channel.send({embeds : [embed]}).then(async(f) => {
