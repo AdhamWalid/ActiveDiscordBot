@@ -43,6 +43,7 @@ app.get('/' , (req,res) => {
 // app.listen(3000)
 
 client.on("ready", async () => {
+  await db.connect()
   console.table(await db.all())
 
 
