@@ -1597,7 +1597,7 @@ client.on('interactionCreate' , async (interaction) => {
       .addField(`Bot ID` , `${bot.id}` , true)
       .addField(`Bot Verfication` , `${verfied}` , true)
       .addField(`Support Server` , `${support}` )
-      .addField(`Link` , `${link}` )
+      .addField(`Link` , `[Click](${link})` )
 
       .setColor('BLURPLE')
       .addField(`Applier` , `${interaction.user}` ,)
