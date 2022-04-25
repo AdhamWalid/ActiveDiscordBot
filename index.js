@@ -1590,12 +1590,15 @@ client.on('interactionCreate' , async (interaction) => {
       console.table(bot)
       if (bot.bot === false) return interaction.reply('That\'s a User not a bot!')
       let channel = client.channels.cache.get('967592185295958106');
+      let link = `https://discord.com/api/oauth2/authorize?client_id=${bot.id}&permissions=0&scope=bot%20applications.commands`
       let embed = new Discord.MessageEmbed()
       .setAuthor({name:`New Bot Admission`})
       .addField(`Bot Name` , `${bot.username}` , true)
       .addField(`Bot ID` , `${bot.id}` , true)
       .addField(`Bot Verfication` , `${verfied}` , true)
       .addField(`Support Server` , `${support}` )
+      .addField(`Link` , `${link}` )
+
       .setColor('BLURPLE')
       .addField(`Applier` , `${interaction.user}` ,)
       channel.send({embeds : [embed]})
