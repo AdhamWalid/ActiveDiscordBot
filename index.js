@@ -1603,7 +1603,7 @@ client.on('interactionCreate' , async (interaction) => {
       .addField(`Applier` , `${interaction.user}` ,)
       channel.send({embeds : [embed]})
 
-      interaction.reply(':tada: Bot Submitted! Please Transfer the Fees')
+      interaction.reply(':tada: Bot Submitted! Please Wait.')
 
     }
   }
