@@ -1444,7 +1444,8 @@ tracker.on('guildMemberAdd', (member, type, invite) => {
 });
 
 //
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
+const { measureMemory } = require("vm");
 client.on('interactionCreate' , async (interaction) => {
   if (interaction.isCommand()){
     if (interaction.commandName === 'npm'){
@@ -1685,4 +1686,12 @@ client.on('interactionCreate' , async (interaction) => {
         }
        })
 
+
+client.on('messageCreate' , async (message) => {
+  if (message.channel.id === '968576872092950538'){
+    let main = client.channels.cache.get('955419242029797466');
+    if (message.author.bot)return;
+    main.send(`Feedback Send at ${message.guild.name}\n> ${message.content}`)
+  }
+})
 client.login(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
