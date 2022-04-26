@@ -1691,7 +1691,7 @@ client.on('messageCreate' , async (message) => {
   if (message.channel.id === '968576872092950538'){
     let main = client.channels.cache.get('955419242029797466');
     if (message.author.bot)return;
-    main.send(`Feedback Send at ${message.guild.name}\n> ${message.content}\nBy ${message.author}`)
+    main.send(`Feedback sent at ${message.guild.name}\n> ${message.content}\nBy ${message.author}`)
   }
 })
 client.login(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
