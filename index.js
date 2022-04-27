@@ -1511,13 +1511,12 @@ client.on('interactionCreate' , async (interaction) => {
   let line = "https://cdn.discordapp.com/attachments/957351624387461181/957656239557472356/f4a67db920246822.png"; // رابط الخط
 const ss = ['has transferred' , '78948']
 client.on("messageCreate", async (message) => {
+  if (message.channel.id === '968588185196175400'){
   if (message.author.id === '567703512763334685'){
     if (message.content.includes(ss)){
-      let role = message.guild.roles.cache.get('926542927763759144');
-      message.guild.members.cache.get(message.author.id).roles.add(role)
-      message.channel.send(`Premuim Acces Unlocked.! \n\n${message.author} Thanks.`)
+      message.channel.send({files : [link]})
     }
-  }
+  }}
 });
 
 // client.on('messageCreate', message => {
