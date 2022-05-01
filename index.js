@@ -17,7 +17,7 @@ const tracker = InvitesTracker.init(client, {
 });
   const discordTranscripts = require('discord-html-transcripts');
 require('dotenv').config()
-//
+//F
 const sourcebin = require('sourcebin');
 const DiscordModal = require('discord-modal')
 DiscordModal(client)
@@ -57,7 +57,7 @@ client.on("ready", async () => {
       })
       setInterval(async function () {
         client.channels.cache.get("966476828543942666").messages.fetch("966479634126499842").then(msg => {
-          var time = cd(new Date().getTime(), new Date("MAY 3, 2022 00:00:00").getTime());
+          var time = cd(new Date().getTime(), new Date("MAY 2, 2022 00:00:00").getTime());
           var embed = new Discord.MessageEmbed()
           .setAuthor({name : `Eid Al Fatr`})
           .setDescription('Message gets edited in 5s')
