@@ -57,7 +57,7 @@ client.on("ready", async () => {
       })
       setInterval(async function () {
         client.channels.cache.get("966476828543942666").messages.fetch("966479634126499842").then(msg => {
-          var time = cd(new Date().getTime(), new Date("MAY 2, 2022 00:00:00").getTime());
+          var time = cd(new Date().getTime(), new Date("MAY 9, 2022 23:38:00").getTime());
           var embed = new Discord.MessageEmbed()
           .setAuthor({name : `Eid Al Fatr`})
           .setDescription('Message gets edited in 5s')
@@ -466,35 +466,6 @@ client.on('interactionCreate', async interaction => {
 
 
 
-
-
-
-          
-      client.on('interactionCreate', async interaction => {
-        if (!interaction.isCommand()) return;
-        if(interaction.commandName == "contest-apply"){
-        await interaction.deferReply();
-          if (!vera.includes(interaction.user.id)) return interaction.editReply({content : "Nope ." , ephemeral : true})
-          let i = 1;
-        const botid = interaction.options.getString('id');
-        const owner = interaction.options.getString('owner')
-          console.log(` ${botid}  ${owner}`)
-
-        let b = await client.users.fetch(botid)
-        let o = await client.users.fetch(owner)
-        console.log(o)
-        console.log(b)
-        let f = client.channels.cache.get("955839522283859978");
-
-        let msg = `<:emoji_83:926389412093366322> \`#${i++}\`\n<:emoji_83:926389412093366322> Bot Name: **${b.username}**\n<:emoji_83:926389412093366322> Bot Owner: **${o.username}**\n`
-        f.send({content : msg}).then(async(i) => {
-          i.react('926389412093366322')
-        })
-        f.send('https://images-ext-1.discordapp.net/external/mH7VBag_P2XLskZu8nwSngtZyT2kjVB_wEKtZQwdUFI/https/media.discordapp.net/attachments/912003017849581629/953214926816673792/B06kEfYQgVAKAAAAAElFTkSuQmCC.png')
-        await interaction.editReply(`Posted in ${f}`)
-      
-      
-          }})
 
 
 
@@ -1008,13 +979,6 @@ client.on('messageCreate' , async (message) => {
 
     message.author.send({embeds : [warnen , warnar]})
     
-  }else {
-    if(message.channel.id ==='957082643609030736'){
-      if (message.author.id === client.user.id) return message.react('926389413733355560')
-      message.delete()
-        message.channel.send(`**${message.author} This ROOM IS RISTRICTED!**`)
-      
-    }
   }
 })
 
