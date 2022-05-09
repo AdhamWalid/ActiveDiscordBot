@@ -104,38 +104,6 @@ const permissions = [
 
 const guildId  = "804432734066835556"
 const commands = [{
-        name : "partner",
-        description: "Creates a Partner with a server",
-        options : [{
-            name : "name",
-            description : "What's the Server Name",
-            type : 3,
-            required : true
-            },{
-                name : "type",
-                description : "Server or Bot?",
-                type : 3,
-                choices: [
-                    {
-                        "name": "bot",
-                        "value": "bot"
-                    },
-                    {
-                        "name": "server",
-                        "value": "server"
-                    }
-                    
-                ],
-                required : true
-                },{
-                  name : "invite",
-                  description : "server or bot invite",
-                  type : 3,
-                  required : true
-                  }
-            ]
-        
-        },{
           name : "slowmode",
           description: "Changes the slowmode",
           options : [{
@@ -155,22 +123,6 @@ const commands = [{
             required : true,
   }]
   },{
-    name : "contest-apply",
-    description: "Applies a Contest",
-    options : [{
-            name : "id",
-            description : "User id",
-            type : 3,
-            required : true
-            },{
-              name : "owner",
-              description : "Owner ID",
-              type : 3,
-              required : true
-              }
-        ]
-    
-    },{
       name : "share-js",
       description : "Share a JS Code",
 }
@@ -365,39 +317,7 @@ const commands = [{
     type : "3",
     required : true
     }]
-},{
-  name : "addbot",
-  description: "Add's your bot to the server",
-  options : [{
-      name : "botid",
-      description : "Your BotID",
-      type : 3,
-      required : true
-      },{
-          name : "verfied",
-          description : "is your bot vefied?",
-          type : 3,
-          choices: [
-              {
-                  "name": "yes",
-                  "value": "yes"
-              },
-              {
-                  "name": "no",
-                  "value": "no"
-              }
-              
-          ],
-          required : true
-          },{
-            name : "support-server",
-            description : "Support Server Link",
-            type : 3,
-            required : true
-            }
-      ]
-  
-  }]
+}]
 
 
 const rest = new REST({ version: '9' }).setToken(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
@@ -489,85 +409,6 @@ client.on('interactionCreate', async interaction => {
 
            
       }});
-
-      client.on('interactionCreate', async interaction => {
-        if (!interaction.isCommand()) return;
-        if(interaction.commandName == "partner"){
-        await interaction.deferReply();
-          if (!vera.includes(interaction.user.id)) return interaction.editReply({content : "Nope ." , ephemeral : true})
-        const name = interaction.options.getString('name');
-        const string = interaction.options.getString('type');
-        const invite = interaction.options.getString('invite')
-          console.log(`${name} ${string}  ${invite}`)
-
-
-        if (string === "bot"){
-
-          let partner = {
-            name : name,
-            type : "Bot",
-            url : invite,
-          }
-        
-          const row = new MessageActionRow()
-          .addComponents(
-            new MessageButton()
-              .setLabel('Join Server')
-              .setStyle('LINK')
-              .setURL(`${partner.url}`)
-              .setEmoji('894173022192300062'),
-          );
-        let f = client.channels.cache.get("955418302363074601");
-
-        let msg = `<a:vera:926375977477615617> Bot Name: **${partner.name}**\n<a:vera:926375977477615617> Partner Type: **${partner.type}**\n${partner.url}`
-        f.send({content : msg , components : [row]})
-        await interaction.editReply(`Posted in ${f}`)  
-      }else  if (string === "server"){
-
-        let partner = {
-          name : name,
-          type : "Server",
-          url : invite,
-        }
-      
-        const row = new MessageActionRow()
-        .addComponents(
-          new MessageButton()
-            .setLabel('Join Server')
-            .setStyle('LINK')
-            .setURL(`${partner.url}`)
-            .setEmoji('894173022192300062'),
-        );
-      let f = client.channels.cache.get("912003010744438834");
-
-      let msg = `<:power_red_circle:894173022192300062> Server Name: **${partner.name}**\n<:dotfill:949721316553015366> Partner Type: **${partner.type}**\n${partner.url}`
-      f.send({content : msg , components : [row]})
-      await interaction.editReply(`Posted in ${f}`)  
-    }
-      
-          }})
-        
-      client.on('messageCreate' , async message => {
-        if(message.content.startsWith(prefix + "username")){
-        const args = message.content.split(" ").slice(1).join(" ")
-       if (!message.author.id === "602758334520623125") return message.react("🤦‍♂️");
-        client.user.setUsername(args)
-        message.react("🟢")      
-        }
-        })
-
-      //  name
-      client.on('interactionCreate', async interaction => {
-        if (!interaction.isCommand()) return;
-        if(interaction.commandName == "set-username"){
-           
-            if (!vera.includes(interaction.user.id)) return interaction.editReply({content : "Nope ." , ephemeral : true})
-        const username = interaction.options.getString('name');
-
-        client.user.setUsername(username)
-        interaction.reply({content : "Done", ephemeral : true}) 
-      
-      }})
         
       client.on('messageCreate' , async message => {
           if(message.content.startsWith(prefix + "avatar")){
