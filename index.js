@@ -55,19 +55,22 @@ client.on("ready", async () => {
       client.user.setPresence({
         status: "idle",
       })
-      setInterval(async function () {
-        client.channels.cache.get("966476828543942666").messages.fetch("966479634126499842").then(msg => {
-          var time = cd(new Date().getTime(), new Date("MAY 9, 2022 14:40:00").getTime());
-          var embed = new Discord.MessageEmbed()
-          .setAuthor({name : `Eid Al Fatr`})
-          .setDescription('Message gets edited in 5s')
-          .addField(`<a:Sparkles:959456166243618826> Time Left . . .` , `**${time}**` , true)
-          .setColor("BLURPLE")
-          .setImage('https://cdn.discordapp.com/attachments/966025558762860646/966415429742522408/0..jpg')
-             msg.edit({embeds : [embed]})
-        })
+      // setInterval(async function () {
+      //   client.channels.cache.get("966476828543942666").messages.fetch("966479634126499842").then(msg => {
+      //     var time = cd(new Date().getTime(), new Date("MAY 9, 2022 14:40:00").getTime());
+      //     var embed = new Discord.MessageEmbed()
+      //     .setAuthor({name : `Developers Center` , iconURL : msg.guild.iconURL({dynamic:true})})
+      //     .setDescription(`سيرفر يساعدك في كل شيء خاص بـ البرمجة (بوتات , مواقع , لغات , تعليم ....الخ)
+      //     حياكم الله السيرفر جميعأ الي عنده مشكلة في كودة او ايرور و مب عارف كيف يحلة؟ فقط ادخل السيرفر حيث بتلاقي المساعدة متوفرة قدر الامكان .
+          
+      //     A server that will help you with anything related to development (discord bots, web developments, languages, guidance, tutorials .....ect), welcome to the server if you need any code-related problems errors or quires then head to the 
+      //     `)
+      //     .setThumbnail(msg.guild.iconURL({dynamic:true}))
+      //     .setColor('BLURPLE')
+      //     msg.edit({embeds : [embed]})
+      //   })
 
-      },5000);
+      // },1000);
  
 console.log(`Logged in as ${client.user.tag}`)
 //   if (!client.application?.owner) await client.application?.fetch();
@@ -410,14 +413,6 @@ client.on('interactionCreate', async interaction => {
            
       }});
         
-      client.on('messageCreate' , async message => {
-          if(message.content.startsWith(prefix + "avatar")){
-          const args = message.content.split(" ").slice(1).join(" ")
-         if (!message.author.id === "602758334520623125") return message.react("🤦‍♂️");
-          client.user.setAvatar(args)
-          message.react("🟢")      
-          }
-      })
 
 
               
