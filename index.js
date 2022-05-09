@@ -68,7 +68,7 @@ client.on("ready", async () => {
         })
 
       },5000);
-
+ 
 console.log(`Logged in as ${client.user.tag}`)
 //   if (!client.application?.owner) await client.application?.fetch();
 const command = (await client.guilds.cache.get('804432734066835556')?.commands.fetch()).find((cmd) => cmd.id === '956648338768412765')
