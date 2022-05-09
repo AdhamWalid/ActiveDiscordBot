@@ -57,7 +57,7 @@ client.on("ready", async () => {
       })
       setInterval(async function () {
         client.channels.cache.get("966476828543942666").messages.fetch("966479634126499842").then(msg => {
-          var time = cd(new Date().getTime(), new Date("MAY 9, 2022 23:38:00").getTime());
+          var time = cd(new Date().getTime(), new Date("MAY 9, 2022 02:39:00").getTime());
           var embed = new Discord.MessageEmbed()
           .setAuthor({name : `Eid Al Fatr`})
           .setDescription('Message gets edited in 5s')
