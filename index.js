@@ -1499,7 +1499,8 @@ const config = {
   "channelId": "926107320382025798",
   "welcomeMessage": "{member} ( {memberTag} ) Welcome to **{server}**\nYou are the member number **{memberCount}**",
   "allowBots": false,
-  "deleteTime": 60
+  "deleteTime": 60,
+  "firemessage" : "Dear {user},\n\n- Sorry to tell you this but we reorganizing our staff, Your role in our server will be removed but you can re-apply through opening a ticket, Good luck\n- Reason: `{reason}`\n- Time: {time} \n- Status : `Fired`"
 }
 client.on('guildMemberAdd', async (member) => {
   if (member.guild.id != config.guildId) return;
@@ -1520,5 +1521,20 @@ client.on('guildMemberAdd', async (member) => {
   
 });
 
+
+client.on('messageCreate' , async (message) => {
+  if (message.content.startsWith(prefix + 'fire')){
+    let reason = message.content.split(" ").slice(2).join(" ");
+    let user = message.mentions.users.first()
+    if (!user) return;
+
+    if (!message.member.permissions.has("ADMINSTRATOR")) return messa.reply(`You Don't Have Permission.`)
+    let firemsg = config.firemessage.replace(/{user}/g,`${user}`).replace(/{time}/g,`<t:${Date.now().toString().slice(0 , 10)}:F>`).replace(/{reason}/g,`${reason}`)
+    if (!reason) return message.reply('Type the reason')
+    user.send(firemsg).catch((err) => message.channel.send(err))
+    message.reply(`${user} Have been fired. :fire:`)
+
+  }
+})
 
 client.login(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
