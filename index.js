@@ -23,7 +23,7 @@ const DiscordModal = require('discord-modal')
 DiscordModal(client)
 const prefix = "d!";
 const {Database}  = require("quickmongo");
-const db = new Database(`mongodb+srv://Velvet:cZQk4SVbG9utLM5h@cluster0.vx3jf.mongodb.net/dev-center?retryWrites=true&w=majority`);
+const db = new Database(`MONGODB_URL`);
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { MessageButton } = require("discord.js");
@@ -1537,4 +1537,4 @@ client.on('messageCreate' , async (message) => {
   }
 })
 
-client.login(`OTU1NDE2OTMzODcwNzUxODI0.YjhXWw.uLmq16ApqKfQktanPdvbU6Ub0Jg`);
+client.login(`BOT_TOKEN`);
